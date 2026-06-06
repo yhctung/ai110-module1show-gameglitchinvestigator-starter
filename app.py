@@ -19,11 +19,12 @@ def parse_guess(raw: str):
     if raw == "":
         return False, None, "Enter a guess."
 
+    # FIX: Added input range validation
     try:
-        if "." in raw:
-            value = int(float(raw))
-        else:
-            value = int(raw)
+        float_value = float(raw)
+        if float_value < 1 or float_value > 100:
+            return False, None, "Guess must be between 1 and 100."
+        value = int(float_value)
     except Exception:
         return False, None, "That is not a number."
 
